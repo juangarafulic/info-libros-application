@@ -1,5 +1,6 @@
 package com.aluracursos.infolibrosapplication.principal;
 
+import com.aluracursos.infolibrosapplication.model.Datos;
 import com.aluracursos.infolibrosapplication.service.ConsumoAPI;
 import com.aluracursos.infolibrosapplication.service.ConvierteDatos;
 
@@ -11,5 +12,7 @@ public class Principal {
     public void muestraMenu() {
         var json = consumoAPI.obtenerDatos(URL_BASE);
         System.out.println(json);
+        var datos = conversor.obtenerDatos(json, Datos.class);
+        System.out.println(datos);
     }
 }
