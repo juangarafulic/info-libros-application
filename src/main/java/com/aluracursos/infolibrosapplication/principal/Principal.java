@@ -6,6 +6,7 @@ import com.aluracursos.infolibrosapplication.service.ConsumoAPI;
 import com.aluracursos.infolibrosapplication.service.ConvierteDatos;
 
 import java.util.Comparator;
+import java.util.DoubleSummaryStatistics;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -41,12 +42,21 @@ public class Principal {
         Optional<DatosLibros> libroBuscado = datosBusqueda.resultados().stream()
                 .filter(libro -> libro.titulo().toUpperCase().contains(tituloLibro.toUpperCase()))
                 .findFirst();
-        if(libroBuscado.isPresent()){
+        if (libroBuscado.isPresent()) {
             System.out.println("Libro encontrado: ");
             System.out.println(libroBuscado.get());
-        }else {
+        } else {
             System.out.println("Libro no encontrado");
         }
+
+        //Generando estadísticas de los datos generales
+        DoubleSummaryStatistics est = datos.resultados().stream()
+                .filter(descarga -> descarga.numeroDescargas() > 0)
+                .collect(Collectors.summarizingDouble(DatosLibros::numeroDescargas));
+        System.out.println("Cantidad media de descargas: " + est.getAverage());
+        System.out.println("Cantidad máxima de descargas: " + est.getMax());
+        System.out.println("Cantidad mínima de descargas: " + est.getMin());
+        System.out.println("Cantidad de datos utilizada para las estadísticas: " + est.getCount());
 
     }
 }
