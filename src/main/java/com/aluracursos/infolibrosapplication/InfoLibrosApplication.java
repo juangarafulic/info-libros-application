@@ -1,13 +1,20 @@
 package com.aluracursos.infolibrosapplication;
 
+import com.aluracursos.infolibrosapplication.principal.Principal;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class InfoLibrosApplication {
+public class InfoLibrosApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
         SpringApplication.run(InfoLibrosApplication.class, args);
     }
 
+	@Override
+	public void run(String... args) throws Exception {
+		Principal principal = new Principal();
+		principal.muestraMenu();
+	}
 }
