@@ -12,9 +12,9 @@ public class InfoLibrosApplication implements CommandLineRunner {
         SpringApplication.run(InfoLibrosApplication.class, args);
     }
 
-	@Override
-	public void run(String... args) throws Exception {
-		Principal principal = new Principal();
-		principal.muestraMenu();
-	}
+    @Override
+    public void run(String... args) throws Exception {
+        Principal principal = new Principal();
+        principal.muestraMenu();
+    }
 }
